@@ -2,10 +2,14 @@
 //					lat = float latitude,
 //					lng = float longitude,
 //					markerTitle as string.
-function addMarker(mapObj,lat,lng,markerTitle)
+function addMarker(mapObj,lat,lng,markerTitle,i)
 {
 	// Create position object.
 	var position = new google.maps.LatLng(lat,lng);
+	//Add info window content
+	 infowindows[i] = new google.maps.InfoWindow({
+      content: ""
+  });
 	// Add the new marker to the master list.
 	var newMarker = new google.maps.Marker({
 		position: position,
@@ -16,6 +20,10 @@ function addMarker(mapObj,lat,lng,markerTitle)
 	// list of markers.
 	markers.push(newMarker);
 	bounds.extend(position);
+	//define infowindow
+	google.maps.event.addListener(markers[i], 'click', function() {
+    	infowindows[i].open(map,markers[i]);
+  	});
 }
 
 // Add button to the Google map.

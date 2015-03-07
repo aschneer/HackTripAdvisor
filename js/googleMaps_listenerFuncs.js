@@ -6,7 +6,7 @@
 // Create Google Map listener function.
 function subSearch(callback)
 {
-	console.log('subSearch');
+	
 	var searchBoxVal = searchBox.value;
 	// Convert search box entry to
 	// latitude and longitude.
@@ -30,10 +30,14 @@ function search()
 		bounds = new google.maps.LatLngBounds();
 		for(var i = 0; i < resultsArray.length; i++)
 		{
-			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name);
+			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name,i);
 		}
 		map.fitBounds(bounds);
+		// console.log(JSON.stringify(resultsArray[0]));
+		
 	});
+
+	
 }
 
 
@@ -57,6 +61,29 @@ function initialize()
 	// Create event listener for when autocomplete
 	// items show up in the search box and one is clicked.
 	google.maps.event.addListener(autocomplete,"place_changed",search);
+
+	google.maps.event.addDomListener(window, 'keypress', function(e) {
+       
+    
+          if (e.keyCode == 65 || 97 ) {//a
+            //fxn
+            // map.setCenter(JSON.stringify(data.data[i].name);
+            // map.setZoom(10);
+            console.log('left swipe');
+          }
+          if (e.keyCode == 68 || 100) {//d
+            //fxn
+            console.log('right swipe');
+          }
+          if (e.keyCode == 83 || 115) {//s
+            //fxn
+            console.log('fist');
+          }
+          if (e.keyCode == 87 || 119) {//w
+            //fxn
+            console.log('fist');
+          }
+    });
 
 
 }
