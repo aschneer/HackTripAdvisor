@@ -50,14 +50,14 @@ function addButton(dispText,buttonTitle) {
 	// Register the button.
 	// Set the index of the button div amongst
 	// its siblings in the HTML DOM tree.
-	buttonDiv.index = 1;
+//	buttonDiv.index = 1;
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(buttonDiv);
 	// Return the div of the buttonUI so a click
 	// event listener can be created for it.
 	return buttonUI;
 }
 
-function addSearchBox()
+function addSearchBox(initialText)
 {
 	// Create the HTML input element.
 	var searchBox = document.createElement("input");
@@ -71,10 +71,15 @@ function addSearchBox()
 	att3.value = "text";
 	searchBox.setAttributeNode(att3);
 	var att4 = document.createAttribute("placeholder");
-	att4.value = "Type a location (ex. 'Boston', 'China', etc.)";
+	att4.value = initialText;
 	searchBox.setAttributeNode(att4);
-
-
-
-
+	// Register the search box.
+	// Set the index of the search box input amongst
+	// its siblings in the HTML DOM tree.
+//	buttonDiv.index = 1;
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchBox);
+	// Return the search box HTML element
+	// so an event can be run when something
+	// is searched.
+	return searchBox;
 }
