@@ -49,7 +49,8 @@ function initialize()
 	// Array containing initial options for the map.
 	var mapOptions = {
 		center: { lat: -34.397, lng: 150.644},
-		zoom: 8
+		zoom: 8,
+		styles: mapStyle
 	};
 	// Create the map object.
 	map = new google.maps.Map(document.getElementById('map-canvas'),
