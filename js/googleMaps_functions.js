@@ -15,6 +15,7 @@ function addMarker(mapObj,lat,lng,markerTitle)
 	// Add the new marker to the
 	// list of markers.
 	markers.push(newMarker);
+	bounds.extend(position);
 }
 
 // Add button to the Google map.

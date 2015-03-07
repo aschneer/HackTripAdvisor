@@ -4,6 +4,42 @@
 // IN THE GOOGLE MAP.
 
 // Create Google Map listener function.
+function subSearch(callback)
+{
+	console.log('subSearch');
+	var searchBoxVal = searchBox.value;
+	// Convert search box entry to
+	// latitude and longitude.
+	// This is done using "Place"
+	// library for Google Maps API.
+	var place = autocomplete.getPlace();
+	// Call function which pings the
+	// Trip Advisor API.  It takes in
+	// the value typed into the search
+	// box and returns an array of all the
+	// objects that turned up in the search.
+	// The objects contain longitude,
+	// latitude, name, etc.
+	resultsArray = getHotels(place.geometry.location.lat(),place.geometry.location.lng(), callback);
+
+}
+
+function search()
+{
+	subSearch(function(){
+		bounds = new google.maps.LatLngBounds();
+		for(var i = 0; i < resultsArray.length; i++)
+		{
+			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name);
+		}
+		map.fitBounds(bounds);
+	});
+}
+
+
+// Update map button listener function.
+
+
 function initialize()
 {
 	// Array containing initial options for the map.
@@ -21,29 +57,9 @@ function initialize()
 	// Create event listener for when autocomplete
 	// items show up in the search box and one is clicked.
 	google.maps.event.addListener(autocomplete,"place_changed",search);
-//	var button_search = addButton("Search", "Search for a place.");
-//	google.maps.event.addDomListener(button_search,'click',search);
+
+
 }
 
-// Update map button listener function.
-function search()
-{
-	var searchBoxVal = searchBox.value;
-	// Convert search box entry to
-	// latitude and longitude.
-	// This is done using "Place"
-	// library for Google Maps API.
-	var place = autocomplete.getPlace();
-	// Call function which pings the
-	// Trip Advisor API.  It takes in
-	// the value typed into the search
-	// box and returns an array of all the
-	// objects that turned up in the search.
-	// The objects contain longitude,
-	// latitude, name, etc.
-	resultsArray = getHotels(place.geometry.location.lat(),place.geometry.location.lng());
-	for(var i = 0; i < resultsArray.length; i++)
-	{
-		addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name);
-	}
-}
+
+

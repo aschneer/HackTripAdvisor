@@ -10,7 +10,8 @@ var searchBox;
 // Array to store the resulting
 // objects from a Trip Advisor
 // ping.
-var resultsArray;
+var resultsArray = [];
 // autocomplete object for
 // search box.
 var autocomplete;
+var bounds;

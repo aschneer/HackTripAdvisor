@@ -1,36 +1,29 @@
 
+//add markers
 
-function getHotels(lat,long){
+function getHotels(Lat,Long, callback){
 
-//
-    console.log("click");
+    console.log("getHotels");
     var request = $.ajax({
-            url: "http://api.tripadvisor.com/api/partner/2.0/map/"+lat+","+long+"?key=HackTripAdvisor-ade29ff43aed&category=hotels",
+            url: "http://api.tripadvisor.com/api/partner/2.0/map/"+Lat+","+Long+"/hotels?key=HackTripAdvisor-ade29ff43aed",
             type: "GET",            
-            dataType: "json",
-        });
-        
-        
-        request.done(function(data) {
-            // get 10 hotels
-   
-            for (var i = 0; i <10; i++){
-            
-                // console.log(JSON.stringify(data.data[i].name)); 
-                // console.log(JSON.stringify(data.data[i].longitude));
-                // console.log(JSON.stringify(data.data[i].latitude));
-                 resultsArray[i] = JSON.stringify(data.data[i]);
-            };
+            dataType: "json"
+        }).done( function(data) {
+                // get 10 hotels
+       
+                for (var i = 0; i <10; i++){       
+                     resultsArray[i] = data.data[i];
+                }
 
-           
-            // set global markers = stuff
-            // Call map update fxn
-        });
+                callback();
 
+            } );
+        
         request.fail(function(jqXHR, textStatus) {
             alert( "Request failed: " + textStatus );
         });
-     
+   
+
         return resultsArray;
 };
 
