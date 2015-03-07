@@ -11,3 +11,6 @@ var searchBox;
 // objects from a Trip Advisor
 // ping.
 var resultsArray;
+// autocomplete object for
+// search box.
+var autocomplete;

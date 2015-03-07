@@ -17,6 +17,10 @@ function initialize()
 	// Add controls to the map and
 	// register event listeners for them.
 	searchBox = addSearchBox("Type a location...");
+	autocomplete = new google.maps.places.Autocomplete(searchBox);
+	// Create event listener for when autocomplete
+	// items show up in the search box and one is clicked.
+	google.maps.event.addListener(autocomplete,"place_changed",search);
 //	var button_search = addButton("Search", "Search for a place.");
 //	google.maps.event.addDomListener(button_search,'click',search);
 }
