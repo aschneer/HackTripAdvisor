@@ -17,17 +17,19 @@ function initialize()
 	// Add controls to the map and
 	// register event listeners for them.
 	searchBox = addSearchBox("Type a location...");
-	var button_search = addButton("Search", "Search for a place.");
-	google.maps.event.addDomListener(button_search,'click',search);
+//	var button_search = addButton("Search", "Search for a place.");
+//	google.maps.event.addDomListener(button_search,'click',search);
 }
 
 // Update map button listener function.
 function search()
 {
-	searchBoxVal = searchBox.value;
+	var searchBoxVal = searchBox.value;
 	// Convert search box entry to
 	// latitude and longitude.
-	latLngObj = FUNCTION();
+	// This is done using "Place"
+	// library for Google Maps API.
+	var place = autocomplete.getPlace();
 	// Call function which pings the
 	// Trip Advisor API.  It takes in
 	// the value typed into the search
@@ -35,9 +37,9 @@ function search()
 	// objects that turned up in the search.
 	// The objects contain longitude,
 	// latitude, name, etc.
-	resultsArray = getHotels(latLngObj.lat,latLngObj.lng);
+	resultsArray = getHotels(place.geometry.location.lat(),place.geometry.location.lng());
 	for(var i = 0; i < resultsArray.length; i++)
 	{
-		addMarker(map,resultsArray[i].lat,resultsArray[i].lng,resultsArray[i].name);
+		addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name);
 	}
 }

@@ -61,6 +61,11 @@ function addSearchBox(initialText)
 {
 	// Create the HTML input element.
 	var searchBox = document.createElement("input");
+	var autocomplete = new google.maps.places.Autocomplete(searchBox);
+	// Create event listener for when autocomplete
+	// items show up in the search box and one is clicked.
+	google.maps.event.addListener(autocomplete,"place_changed",search);
+	// Add attributes and values to search box.
 	var att1 = document.createAttribute("id");
 	att1.value = "searchBox";
 	searchBox.setAttributeNode(att1);
