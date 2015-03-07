@@ -31,7 +31,7 @@ function getHotels(lat,long){
             alert( "Request failed: " + textStatus );
         });
      
-
+        return resultsArray;
 };
 
 google.maps.event.addDomListener(window, 'keypress', function(e) {
