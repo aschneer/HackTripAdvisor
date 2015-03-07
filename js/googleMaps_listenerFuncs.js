@@ -65,7 +65,6 @@ function search()
 	
 }
 
-
 // Update map button listener function.
 
 
@@ -105,7 +104,10 @@ function initialize()
 	        
 	            currentwindow--;	            
             }
-
+           
+			// map.fitBounds(bounds)
+			map.panTo(markers[currentwindow].position);
+			// map.setZoom(16);
             infowindows[currentwindow].open(map,markers[currentwindow]);	
             console.log('left swipe');
           }
@@ -122,6 +124,9 @@ function initialize()
 	        
 	            currentwindow++;	            
             }
+           
+			map.panTo(markers[currentwindow].position);
+			// map.setZoom(16);
             infowindows[currentwindow].open(map,markers[currentwindow]);	
             console.log('right swipe');
           }
