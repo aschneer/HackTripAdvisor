@@ -8,10 +8,20 @@ Brook Nichols
 # Google Maps Hotel Search with TripAdvisor API, combined with Myo gesture control
 -Google Maps API
 -TripAdvisor API
--Myo armbad, and keyboard Mapper
-==================================
+-Myo armband, and keyboard Mapper
+
+----------------------------------
 The purpose of this project is to show how gesture control can be integrated 
 into a commonly used interface to change user experience.
-Rus on simple Node.js server
+
+
+Runs on simple Node.js server
+
+Myo Mapped Controls
+----------------------
+S - Fist
+A - Wave Left
+D - Wave Right
+W - Fingers Spread
 
 
