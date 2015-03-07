@@ -7,9 +7,7 @@ Brook Nichols
 
 # Google Maps Hotel Search with TripAdvisor API, combined with Myo gesture control
 
-*Google Maps API
-*TripAdvisor API
-*Myo armband, and keyboard Mapper
+Google Maps API,TripAdvisor API,Myo armband, and keyboard Mapper
 
 ----------------------------------
 The purpose of this project is to show how gesture control can be integrated 
