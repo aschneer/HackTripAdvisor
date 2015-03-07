@@ -2,8 +2,9 @@
 //					lat = float latitude,
 //					lng = float longitude,
 //					markerTitle as string.
-function addMarker(mapObj,lat,lng,markerTitle,i)
+function addMarker(mapObj,lat,lng,markerTitle,i,callback)
 {
+	
 	// Create position object.
 	var position = new google.maps.LatLng(lat,lng);
 	//Add info window content
@@ -16,7 +17,7 @@ function addMarker(mapObj,lat,lng,markerTitle,i)
       "<div>Price Level :<span style='color:gold'> "+JSON.stringify(resultsArray[i].price_level)+"</span></div>"
   	});
 	
-	var iconImage = "assets/tripadvisor_logo_marker.png";
+	var iconImage = "assets/tripadvisor_logo_marker_v2.png";
 	// Add the new marker to the master list.
 	var newMarker = new google.maps.Marker({
 		position: position,
@@ -32,7 +33,10 @@ function addMarker(mapObj,lat,lng,markerTitle,i)
 	google.maps.event.addListener(markers[i], 'click', function() {
     	infowindows[i].open(map,markers[i]);
   	});
-  	markers[0]
+	callback();
+
+
+  	
 }
 
 function addSearchBox(initialText)

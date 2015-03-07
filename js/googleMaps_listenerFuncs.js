@@ -46,12 +46,21 @@ function search()
 		bounds = new google.maps.LatLngBounds();
 		for(var i = 0; i < resultsArray.length; i++)
 		{
-			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name,i);
+			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name,i,function(){	
+				// console.log(infowindows[0] +" " +markers[0]);
+				if (i == 0){
+					infowindows[0].open(map,markers[0]);	
+					console.log(markers.length);
+				}		
+			});
+			
 		}
+
 		map.fitBounds(bounds);
-		console.log(JSON.stringify(resultsArray[0]));
+		// console.log(JSON.stringify(resultsArray[0]));
 		
 	});
+
 
 	
 }
@@ -64,7 +73,7 @@ function initialize()
 {
 	// Array containing initial options for the map.
 	var mapOptions = {
-		center: { lat: -34.397, lng: 150.644},
+		center: { lat: 42.362994, lng: -71.083418},
 		zoom: 8,
 		styles: mapStyle
 	};
@@ -82,19 +91,52 @@ function initialize()
 	google.maps.event.addDomListener(window, 'keypress', function(e) {
        
     
-          if (e.keyCode == 91 ) {// { - wave left for navigatin right
+          if (e.keyCode == 123 ) {// { - wave left for navigatin right
             //fxn
             // map.setCenter(JSON.stringify(data.data[i].name);
             // map.setZoom(10);
+          
+            infowindows[currentwindow].close(map,markers[currentwindow]);
+            if( currentwindow == 0){
+            
+            	currentwindow = markers.length-1;
+            }
+            else{
+	        
+	            currentwindow--;	            
+            }
+
+            infowindows[currentwindow].open(map,markers[currentwindow]);	
             console.log('left swipe');
           }
-          if (e.keyCode == 93) {// } - wave right for navigating left
-            //fxn
+
+          if (e.keyCode == 125 ){// } - wave right for navigating left
+       	     //fxn
+       
+       	 	 infowindows[currentwindow].close(map,markers[currentwindow]);
+       		 if( currentwindow == markers.length-1){
+            	
+            	currentwindow = 0;
+            }
+            else{
+	        
+	            currentwindow++;	            
+            }
+            infowindows[currentwindow].open(map,markers[currentwindow]);	
             console.log('right swipe');
           }
-          if (e.keyCode == 91) {// | - open fingers open Website
+
+          if (e.keyCode == 124) {// | - open fingers open Website
             //fxn
-            console.log('open hand');
+             console.log('open hand');
+            var win = window.open(resultsArray[currentwindow].web_url, '_blank');
+				if(win){
+				    //Browser has allowed it to be opened
+				    win.focus();
+				}
+            
+
+           
           }
           // if (e.ctrlKey && e.keyCode == 87 || 119) {// cntrl + w/W - Fist Close Tab
           //   //fxn

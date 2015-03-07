@@ -15,8 +15,12 @@ var searchBox;
 var resultsArray = [];
 // autocomplete object for
 // search box.
+
 var autocomplete;
 var bounds;
+//integer of current window for Myo slide navigation
+var currentwindow = 0;
+
 var mapStyle = [
     {
         "featureType": "water",
