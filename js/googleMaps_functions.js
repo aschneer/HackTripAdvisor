@@ -8,13 +8,21 @@ function addMarker(mapObj,lat,lng,markerTitle,i)
 	var position = new google.maps.LatLng(lat,lng);
 	//Add info window content
 	infowindows[i] = new google.maps.InfoWindow({
-      content: ""
+
+      content: "<h2 style='color: green'>"+resultsArray[i].name+"</h2>"+
+      "<a href="+JSON.stringify(resultsArray[i].web_url)+">Hotel Website</a>"+
+      "<div>Percent Recommend : "+JSON.stringify(resultsArray[i].percent_recommended)+" %</div>"+
+      "<a href="+JSON.stringify(resultsArray[i].write_review)+">Write a Review</a>"+
+      "<div>Price Level :<span style='color:gold'> "+JSON.stringify(resultsArray[i].price_level)+"</span></div>"
   	});
+	
+	var iconImage = "assets/tripadvisor_logo_marker.png";
 	// Add the new marker to the master list.
 	var newMarker = new google.maps.Marker({
 		position: position,
 		map: mapObj,
-		title: markerTitle
+		title: markerTitle,
+		icon: iconImage
 	});
 	// Add the new marker to the
 	// list of markers.
@@ -24,6 +32,7 @@ function addMarker(mapObj,lat,lng,markerTitle,i)
 	google.maps.event.addListener(markers[i], 'click', function() {
     	infowindows[i].open(map,markers[i]);
   	});
+  	markers[0]
 }
 
 function addSearchBox(initialText)

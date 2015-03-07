@@ -4,8 +4,22 @@
 // IN THE GOOGLE MAP.
 
 // Create Google Map listener function.
+
+function clearAllMap(callback){
+	callback();
+}
+
 function subSearch(callback)
 {
+	//clear map
+	clearAllMap( function(){
+		for (var i = 0; i < markers.length; i++) {
+    		markers[i].setMap(null);
+  		}
+		markers.length = 0;
+		infowindows.length = 0;
+		resultsArray.length = 0;
+	});
 	
 	var searchBoxVal = searchBox.value;
 	// Convert search box entry to
@@ -26,6 +40,8 @@ function subSearch(callback)
 
 function search()
 {
+	// empty arrays
+	
 	subSearch(function(){
 		bounds = new google.maps.LatLngBounds();
 		for(var i = 0; i < resultsArray.length; i++)
@@ -33,7 +49,7 @@ function search()
 			addMarker(map,resultsArray[i].latitude,resultsArray[i].longitude,resultsArray[i].name,i);
 		}
 		map.fitBounds(bounds);
-		// console.log(JSON.stringify(resultsArray[0]));
+		console.log(JSON.stringify(resultsArray[0]));
 		
 	});
 
@@ -66,24 +82,24 @@ function initialize()
 	google.maps.event.addDomListener(window, 'keypress', function(e) {
        
     
-          if (e.keyCode == 65 || 97 ) {//a
+          if (e.keyCode == 91 ) {// { - wave left for navigatin right
             //fxn
             // map.setCenter(JSON.stringify(data.data[i].name);
             // map.setZoom(10);
             console.log('left swipe');
           }
-          if (e.keyCode == 68 || 100) {//d
+          if (e.keyCode == 93) {// } - wave right for navigating left
             //fxn
             console.log('right swipe');
           }
-          if (e.keyCode == 83 || 115) {//s
+          if (e.keyCode == 91) {// | - open fingers open Website
             //fxn
-            console.log('fist');
+            console.log('open hand');
           }
-          if (e.keyCode == 87 || 119) {//w
-            //fxn
-            console.log('fist');
-          }
+          // if (e.ctrlKey && e.keyCode == 87 || 119) {// cntrl + w/W - Fist Close Tab
+          //   //fxn
+          //   console.log('fist');
+          // }
     });
 
 
